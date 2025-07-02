@@ -31,7 +31,9 @@ int firstOccur(int arr[], int low, int high, int x){
             return mid;
         }
         else{
-            return firstOccur(arr, low, mid-1, x);
+            return firstOccur(arr, low, mid-1, x);   //"I found x at index mid, but maybe there's an earlier one. So check the left side!"
+            //Then it means there's another occurrence before mid, and we need to keep searching left.
+            // So we call the function again, but only on the left half:
         }
     }
 }
@@ -77,4 +79,27 @@ int lastOcc(int arr[], int low, int high, int x, int n){
         }
         // IF WE DON'T FIND THEN BY THIS ELSE LINE OF CODE JUST ABOVE WE GO TO RIGHT HALF TO FIND LAST OCCURENCE
     }
+}
+
+// BUT FOR THIS ITERATIVE METHOD IS MORE BETTER THAN THIS RECURSIVE METHOD AS IT TAKES LESS AUXILLARY SPACE
+
+int lastOcc(int arr[], int n, int x)
+{
+    int low = 0, high = n - 1;
+    while (low <= high)
+    {
+        int mid = (low + high) / 2;
+        if (arr[mid] < x)
+            low = mid + 1;
+        else if (arr[mid] > x)
+            high = mid - 1;
+        else
+        {
+            if (mid == n - 1 || arr[mid] != arr[mid + 1])
+                return mid;
+            else
+                low = mid + 1;
+        }
+    }
+    return -1;
 }

@@ -55,11 +55,11 @@ public:
 int RecursiveBsearch(int arr[], int low, int high, int x){
     if(low > high) return -1;
     int mid = (low + high)/ 2;
-    if(arr[mid == x]) return mid;
+    if(arr[mid] == x) return mid;
     else if (arr[mid] > x){
         return RecursiveBsearch(arr, low, mid -1 , x);
     }
-    else(arr[mid] < x){
+    else {
         return RecursiveBsearch(arr, mid + 1, high, x);
     }
 }
